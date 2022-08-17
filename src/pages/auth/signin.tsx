@@ -3,10 +3,15 @@ import Image from "next/image";
 import React from "react";
 import { getProviders, signIn } from "next-auth/react";
 import { Provider } from "next-auth/providers";
+import { Meta } from "../../components";
 
 const Signin = ({ providers }: { providers: { [name: string]: Provider } }) => {
   return (
     <div className="flex justify-center mt-20 space-x-4">
+      <Meta
+        title="Sign In"
+        description="Sign in to twitter clone using Goggle or Github"
+      />
       <img
         src="https://cdn.cms-twdigitalassets.com/content/dam/help-twitter/en/twitter-tips/desktop-assets/ch-01/ch12findphone.png.twimg.1920.png"
         alt=""

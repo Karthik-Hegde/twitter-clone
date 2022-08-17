@@ -65,7 +65,7 @@ const Sidebar = () => {
                   : `https://avatars.dicebear.com/api/initials/${session.user?.name}.svg`
               }
               alt="user"
-              className="h-10 w-10 ronded-full xl:mr-2"
+              className="h-10 w-10 rounded-full xl:mr-2"
             />
             <div className="hidden leading-5 xl:inline">
               <h4 className="font-bold">{session.user?.name}</h4>

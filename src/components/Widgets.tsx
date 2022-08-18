@@ -59,7 +59,7 @@ const Widgets = ({ newsResults, randomUserResults }: WidgetsProps) => {
               exit={{ opacity: 0 }}
               transition={{ duration: 1 }}
             >
-              <User userData={randomUser} />
+              <User key={randomUser.login.username} userData={randomUser} />
             </motion.div>
           ))}
         </AnimatePresence>

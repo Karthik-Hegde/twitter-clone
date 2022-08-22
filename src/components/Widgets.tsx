@@ -3,31 +3,38 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import News from "./News";
 import User from "./User";
+import { useRecoilState } from "recoil";
+import { searchState } from "../atom/searchAtom";
 
 interface WidgetsProps {
   newsResults: [];
-  randomUserResults: [];
+  randomUserResults?: [];
 }
 
 const Widgets = ({ newsResults, randomUserResults }: WidgetsProps) => {
   const [articleNum, setArticleNum] = useState(3);
   const [randomUserNum, setRandomUserNum] = useState(3);
+  const [searchText, setSearchText] = useRecoilState(searchState);
 
   return (
     <div className="hidden xl:w-[600px] lg:inline ml-8 space-y-5">
-      <div className="w-[90%] xl:w-[75%] sticky top-0 bg-white py-1.5 z-50 ">
+      <div className="w-[90%] xl:w-[75%] sticky top-0 bg-white dark:bg-black py-1.5 z-50 ">
         <div className="flex items-center p-3 rounded-full relative">
-          <SearchIcon className="h-5 z-50 text-gray-500" />
+          <SearchIcon className="h-5 z-50 text-gray-500 dark:text-[#5B6065]" />
           <input
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
             type="text"
             placeholder="Search twitter"
-            className="absolute inset-0 rounded-full pl-11 border-gray-500 text-gray-700 focus:shadow-lg focus:bg-white bg-gray-100"
+            className="absolute inset-0 rounded-full pl-11 border-gray-500 text-gray-700 focus:shadow-lg focus:bg-white bg-gray-100 dark:bg-[#202327] dark:placeholder-[#5B6065]"
           />
         </div>
       </div>
 
-      <div className="text-gray-700 space-y-3 bg-gray-100 rounded-xl pt-2 w-[90%] xl:w-[75%]">
-        <h4 className="font-bold text-xl px-4">Whats happening</h4>
+      <div className="text-gray-700 space-y-3 bg-gray-100 dark:bg-black rounded-xl pt-2 w-[90%] xl:w-[75%]">
+        <h4 className="font-bold text-xl px-4 dark:text-white">
+          Whats happening
+        </h4>
         <AnimatePresence>
           {newsResults?.slice(0, articleNum).map((article) => (
             <motion.div
@@ -48,8 +55,10 @@ const Widgets = ({ newsResults, randomUserResults }: WidgetsProps) => {
           Show more
         </button>
       </div>
-      <div className="sticky top-16 text-gray-700 space-y-3 bg-gray-100 pt-2 rounded-xl w-[90%] xl:w-[75%]">
-        <h4 className="font-bold text-xl px-4">Who to follow</h4>
+      {/* <div className="sticky top-16 text-gray-700 space-y-3 bg-gray-100 dark:bg-black pt-2 rounded-xl w-[90%] xl:w-[75%]">
+        <h4 className="font-bold text-xl px-4 dark:text-white">
+          Who to follow
+        </h4>
         <AnimatePresence>
           {randomUserResults.slice(0, randomUserNum).map((randomUser) => (
             <motion.div
@@ -69,7 +78,7 @@ const Widgets = ({ newsResults, randomUserResults }: WidgetsProps) => {
         >
           Show more
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

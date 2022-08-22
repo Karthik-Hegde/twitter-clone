@@ -25,6 +25,7 @@ import { useRouter } from "next/router";
 import { deleteObject, ref } from "firebase/storage";
 import { useRecoilState } from "recoil";
 import { modalState, postIdState } from "../atom/modalAtom";
+import Image from "next/image";
 
 interface PostProps {
   id: string;
@@ -94,14 +95,18 @@ const Post = ({ id, post }: PostProps) => {
     <>
       {post && (
         <div className="flex p-3 border-b border-gray-200 cursor-pointer">
-          <img
-            src={post.data().userImg}
-            alt={post.data().name}
-            className="w-11 h-11 rounded-full mr-4"
-          />
+          <div className="relative h-11 w-11 rounded-full overflow-hidden mr-4">
+            <Image
+              layout="fill"
+              objectFit="cover"
+              src={post.data().userImg}
+              alt={post.data().name}
+              className="rounded-full mr-4"
+            />
+          </div>
           <div className="flex-1">
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-1 whitespace-nowrap">
+              <div className="flex items-center space-x-1 whitespace-nowrap text-gray-800 dark:text-[#5B6065]">
                 <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">
                   {post.data().name}
                 </h4>
@@ -123,7 +128,7 @@ const Post = ({ id, post }: PostProps) => {
             </div>
 
             {/* text and image */}
-            <p className="text-gray-800 text-[15px] sm:text-[16px] mb-2">
+            <p className="text-[15px] sm:text-[16px] mb-2">
               {post.data().text}
             </p>
             {post.data().image && (

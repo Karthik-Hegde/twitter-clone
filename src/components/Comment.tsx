@@ -24,6 +24,7 @@ import {
   QueryDocumentSnapshot,
   setDoc,
 } from "firebase/firestore";
+import Image from "next/image";
 
 const Comment = ({ comment, commentId, originalPostId }) => {
   const [likes, setLikes] = useState<
@@ -95,18 +96,21 @@ const Comment = ({ comment, commentId, originalPostId }) => {
   return (
     <div className="flex p-3 cursor-pointer border-b border-gray-200 pl-20">
       {/* user image */}
-      <img
-        className="h-11 w-11 rounded-full mr-4"
-        src={comment?.userImg}
-        alt="user-img"
-      />
+      <div className="relative h-11 w-11 mr-4">
+        <Image
+          layout="fill"
+          objectFit="cover"
+          className="rounded-full"
+          src={comment?.userImg}
+          alt="user-img"
+        />
+      </div>
       {/* right side */}
       <div className="flex-1">
         {/* Header */}
-
         <div className="flex items-center justify-between">
           {/* post user info */}
-          <div className="flex items-center space-x-1 whitespace-nowrap">
+          <div className="flex items-center space-x-1 whitespace-nowrap text-gray-800 dark:text-[#5B6065]">
             <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">
               {comment?.name}
             </h4>
@@ -122,9 +126,7 @@ const Comment = ({ comment, commentId, originalPostId }) => {
 
         {/* post text */}
 
-        <p className="text-gray-800 text-[15px sm:text-[16px] mb-2">
-          {comment?.comment}
-        </p>
+        <p className="text-[15px sm:text-[16px] mb-2">{comment?.comment}</p>
 
         {/* icons */}
 

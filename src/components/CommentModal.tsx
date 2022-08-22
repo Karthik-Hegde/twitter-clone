@@ -21,6 +21,7 @@ import {
 import { db } from "../../firebase";
 import { formatDistance } from "date-fns";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 const CommentModal = () => {
   const [open, setOpen] = useRecoilState(modalState);
@@ -57,7 +58,7 @@ const CommentModal = () => {
         <Modal
           isOpen={open}
           onRequestClose={() => setOpen(false)}
-          className="max-w-lg w-[90%] absolute top-24 left-[50%] translate-x-[-50%] bg-white border-2 border-gray-200 rounded-xl shadow-md"
+          className="max-w-lg w-[90%] absolute top-24 left-[50%] translate-x-[-50%] bg-white  border-2 border-gray-200 rounded-xl shadow-md"
         >
           <div className="p-1">
             <div className="border-b border-gray-200 py-2 px-1.5">
@@ -68,13 +69,17 @@ const CommentModal = () => {
                 <XIcon className="h-[23px] text-gray-700 p-0" />
               </div>
             </div>
-            <div className="p-2 flex items-center space-x-1 relative">
+            <div className="p-2 flex items-center space-x-1 relative dark:text-black">
               <span className="w-0.5 h-full z-[-1] absolute left-8 top-11 bg-gray-300" />
-              <img
-                src={post?.data()?.userImg}
-                alt={post?.data()?.name}
-                className="w-11 h-11 rounded-full mr-4"
-              />
+              <div className="relative h-11 w-11 mr-4">
+                <Image
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-full"
+                  src={post?.data()?.userImg}
+                  alt={post?.data()?.name}
+                />
+              </div>
               <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">
                 {post?.data()?.name}
               </h4>
@@ -97,11 +102,15 @@ const CommentModal = () => {
             </p>
 
             <div className="flex p-3 space-x-3">
-              <img
-                src={session?.user?.image || ""}
-                alt=""
-                className="w-11 h-11 rounded-full cursor-pointer hover:brightness-95"
-              />
+              <div className="relative h-11 w-11 rounded-full">
+                <Image
+                  layout="fill"
+                  objectFit="cover"
+                  src={session?.user?.image || ""}
+                  alt=""
+                  className="rounded-full cursor-pointer hover:brightness-95"
+                />
+              </div>
               <div className="w-full divide-y divide-gray-200">
                 <div className="">
                   <textarea

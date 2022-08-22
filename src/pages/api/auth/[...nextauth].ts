@@ -1,13 +1,7 @@
-import NextAuth, { DefaultSession, Session } from "next-auth";
+import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 
-// interface ModSession extends Session {
-//   user: {
-//     uid: string;
-//     username: string;
-//   };
-// }
 export default NextAuth({
   providers: [
     GithubProvider({

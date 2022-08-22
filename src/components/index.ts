@@ -5,3 +5,4 @@ export { default as Widgets } from "./Widgets";
 export { default as Meta } from "./Meta";
 export { default as Post } from "./Post";
 export { default as Comment } from "./Comment";
+export { default as Alert } from "./Alert";

@@ -24,6 +24,7 @@ const Sidebar = () => {
     <div className="hidden fixed h-full flex-col sm:flex  p-2 xl:items-start xl:ml-24">
       <div className="hoverEffect p-0 hover:bg-blue-100 xl-px-1">
         <Image
+          onClick={() => router.push("/")}
           src={
             "https://help.twitter.com/content/dam/help-twitter/brand/logo.png"
           }
@@ -57,19 +58,27 @@ const Sidebar = () => {
           </button>
 
           <div className="hoverEffect flex items-center text-gray-700 justify-center xl:justify-start mt-auto">
-            <img
-              onClick={() => signOut()}
-              src={
-                session.user?.image
-                  ? session.user.image
-                  : `https://avatars.dicebear.com/api/initials/${session.user?.name}.svg`
-              }
-              alt="user"
-              className="h-10 w-10 rounded-full xl:mr-2"
-            />
+            <div className="relative h-10 w-10 rounded-full overflow-hidden xl:mr-2">
+              <Image
+                layout="fill"
+                objectFit="cover"
+                onClick={() => signOut()}
+                src={
+                  session.user?.image
+                    ? session.user.image
+                    : `https://avatars.dicebear.com/api/initials/${session.user?.name}.svg`
+                }
+                alt="user"
+                className="rounded-full"
+              />
+            </div>
             <div className="hidden leading-5 xl:inline">
-              <h4 className="font-bold">{session.user?.name}</h4>
-              <p className="text-gray-500">@{session.user?.username}</p>
+              <h4 className="font-bold dark:text-white">
+                {session.user?.name}
+              </h4>
+              <p className="text-gray-500 dark:text-[#5B6065]">
+                @{session.user?.username}
+              </p>
             </div>
             <DotsHorizontalIcon className="hidden h-5 xl:ml-8 xl:inline" />
           </div>

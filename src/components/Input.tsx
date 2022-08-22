@@ -15,6 +15,7 @@ import {
 } from "firebase/firestore";
 import { db, storage } from "../../firebase";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import Image from "next/image";
 
 const Input = () => {
   const { data: session } = useSession();
@@ -72,16 +73,20 @@ const Input = () => {
     <>
       {session && (
         <div className="flex border-b border-gray-200 p-3 space-x-3">
-          <img
-            onClick={() => signOut()}
-            src={
-              session.user?.image
-                ? session.user.image
-                : `https://avatars.dicebear.com/api/initials/${session.user?.name}.svg`
-            }
-            alt="user"
-            className="h-11 w-11 rounded-full cursor-pointer hover:brightness-95"
-          />
+          <div className="relative h-11 w-11 rounded-full overflow-hidden">
+            <Image
+              layout="fill"
+              objectFit="cover"
+              onClick={() => signOut()}
+              src={
+                session.user?.image
+                  ? session.user.image
+                  : `https://avatars.dicebear.com/api/initials/${session.user?.name}.svg`
+              }
+              alt="user"
+              className="rounded-full cursor-pointer hover:brightness-95"
+            />
+          </div>
           <div className="w-full divide-y divide-gray-200">
             <div className="">
               <textarea
@@ -89,7 +94,7 @@ const Input = () => {
                 onChange={(e) => setInput(e.target.value)}
                 rows={2}
                 placeholder="What's happening?"
-                className="w-full border-none focus:ring-0 text-lg placeholder-gray-700 tracking-wide min-h-[50px]"
+                className="w-full border-none focus:ring-0 text-lg placeholder-gray-700 tracking-wide min-h-[50px] dark:bg-[#202327] dark:placeholder-[#5B6065]"
               />
             </div>
             {selectedFile && (

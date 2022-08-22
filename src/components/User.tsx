@@ -14,10 +14,10 @@ const User = ({ userData }: { userData: {} }) => {
         className={"rounded-full"}
       />
       <div className="truncate ml-4 leading-5">
-        <h4 className="font-bold hover:underline text-[14px] truncate">
+        <h4 className="font-bold hover:underline text-[14px] truncate dark:text-white ">
           {userData.login.username}
         </h4>
-        <h5 className="text-[13px] text-gray-500 truncate">
+        <h5 className="text-[13px] text-gray-500 truncate dark:text-[#5B6065]">
           {userData.name.first + " " + userData.name.last}
         </h5>
       </div>

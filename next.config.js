@@ -7,6 +7,8 @@ const nextConfig = {
       "help.twitter.com",
       "res.cloudinary.com",
       "cdn.cms-twdigitalassets.com",
+      "avatars.githubusercontent.com",
+      "lh3.googleusercontent.com",
     ],
   },
 };

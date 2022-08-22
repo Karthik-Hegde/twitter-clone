@@ -12,11 +12,15 @@ const Signin = ({ providers }: { providers: { [name: string]: Provider } }) => {
         title="Sign In"
         description="Sign in to twitter clone using Goggle or Github"
       />
-      <img
-        src="https://cdn.cms-twdigitalassets.com/content/dam/help-twitter/en/twitter-tips/desktop-assets/ch-01/ch12findphone.png.twimg.1920.png"
-        alt=""
-        className="hidden md:inline-flex object-cover md:w-44 md:h-80 rotate-6"
-      />
+      <div className="relative hidden md:inline-flex object-cover md:w-44 md:h-80 rotate-6">
+        <Image
+          layout="fill"
+          objectFit="cover"
+          src="https://cdn.cms-twdigitalassets.com/content/dam/help-twitter/en/twitter-tips/desktop-assets/ch-01/ch12findphone.png.twimg.1920.png"
+          alt=""
+          className=""
+        />
+      </div>
       <div className="flex flex-col items-center">
         <Image
           width={144}
